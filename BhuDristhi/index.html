@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BhuDristhi Gov3D Property App</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0f18">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/250px-Emblem_of_India.svg.png">
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/250px-Emblem_of_India.svg.png"
+                alt="Satyameva Jayate" class="gov-logo">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>BhuDristhi Gov3D</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#workflow">Reconstruction Workflow</a></li>
+            <li><a href="#verification">Verification & Fraud Detection</a></li>
+            <li><button class="login-btn">Official Login</button></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Digital Governance in 3D</h1>
+            <p class="tagline">"From land parcels to vertical spaces, an intelligent 3D system for uniquely identifying,
+                validating, and managing every property unit with scalable digital governance."</p>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="ulpin-search" placeholder="Enter ID (e.g., SANGAMNER-IND-7890-4561-23)">
+                    <button id="search-btn">Search Property</button>
+                </div>
+                <p class="search-hint">Try searching: <strong>SANGAMNER-IND-7890-4561-23</strong></p>
+            </div>
+
+            <div class="hero-actions">
+                <button class="secondary-btn">Learn More</button>
+                <button class="secondary-btn">Learn More</button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="cube-container">
+                <div class="cube">
+                    <div class="face front">3D Flat 502</div>
+                    <div class="face back">Verified</div>
+                    <div class="face right">Unique ID</div>
+                    <div class="face left">Secure</div>
+                    <div class="face top">Gov Data</div>
+                    <div class="face bottom">Land Parcel</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Results Dashboard (Hidden by default) -->
+    <section id="search-results" class="dashboard-section hidden">
+        <div class="dashboard-header">
+            <h2>Property Dashboard: <span id="res-ulpin" class="highlight-text">---</span></h2>
+            <span id="res-status" class="status-badge verified"><i class="fa-solid fa-check-circle"></i> Verified</span>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- 3D View Column -->
+            <div class="dashboard-card model-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-cube"></i>
+                    <h3>Interactive 3D View</h3>
+                </div>
+                <div class="model-viewer-placeholder">
+                    <div class="building-scene">
+                        <div class="scene-wrapper">
+                            <div class="ground-plane">
+                                <div class="road"></div>
+                                <div class="parking-lines"></div>
+                            </div>
+                            <div class="building-3d">
+                                <!-- Parking Floor (Ground) -->
+                                <div class="b-floor floor-parking">
+                                    <div class="b-face p-front">Parking</div>
+                                    <div class="b-face p-back"></div>
+                                    <div class="b-face p-left"></div>
+                                    <div class="b-face p-right"></div>
+                                    <div class="b-face p-top"></div>
+                                    <div class="b-face p-bottom"></div>
+                                </div>
+
+                                <!-- Floor 1 -->
+                                <div class="b-floor floor-1">
+                                    <div class="b-flat flat-a">
+                                        <div class="b-face f-front">Flat 101</div>
+                                        <div class="b-face f-back"></div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                    <div class="b-flat flat-b">
+                                        <div class="b-face f-front"></div>
+                                        <div class="b-face f-back">Flat 102</div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Floor 2 -->
+                                <div class="b-floor floor-2">
+                                    <div class="b-flat flat-a">
+                                        <div class="b-face f-front">Flat 201</div>
+                                        <div class="b-face f-back"></div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                    <div class="b-flat flat-b">
+                                        <div class="b-face f-front"></div>
+                                        <div class="b-face f-back">Flat 202</div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Floor 3 -->
+                                <div class="b-floor floor-3">
+                                    <div class="b-flat flat-a highlighted">
+                                        <div class="b-face f-front">Flat 301</div>
+                                        <div class="b-face f-back"></div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                    <div class="b-flat flat-b">
+                                        <div class="b-face f-front"></div>
+                                        <div class="b-face f-back">Flat 302</div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Floor 4 -->
+                                <div class="b-floor floor-4">
+                                    <div class="b-flat flat-a">
+                                        <div class="b-face f-front">Flat 401</div>
+                                        <div class="b-face f-back"></div>
+                                        <div class="b-face f-left"></div>
+                                        <div class="b-face f-right"></div>
+                                        <div class="b-face f-top"></div>
+                                        <div class="b-face f-bottom"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-controls">
+                        <button id="btn-pan"><i class="fa-solid fa-arrows-up-down-left-right"></i> Reset</button>
+                        <button id="btn-rotate"><i class="fa-solid fa-rotate"></i> Auto-Rotate</button>
+                        <button id="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom</button>
+                    </div>
+                </div>
+                <button id="btn-inside-view" class="primary-btn"
+                    style="margin-top: 1.5rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1rem;">
+                    <i class="fa-solid fa-vr-cardboard"></i> View Inside
+                </button>
+            </div>
+
+            <!-- Details Column -->
+            <div class="dashboard-details">
+                <!-- Spatial Dimensions -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        <h3>Spatial Dimensions</h3>
+                    </div>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <label>Built-up Area</label>
+                            <span id="res-area">---</span>
+                        </div>
+                        <div class="data-item">
+                            <label>Height (Floor to Ceiling)</label>
+                            <span id="res-height">---</span>
+                        </div>
+                        <div class="data-item">
+                            <label>Depth/Length</label>
+                            <span id="res-depth">---</span>
+                        </div>
+                        <div class="data-item">
+                            <label>Floor Level</label>
+                            <span id="res-floor">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ownership & Legal -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-file-contract"></i>
+                        <h3>Ownership & Compliance</h3>
+                    </div>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <label>Current Owner</label>
+                            <span id="res-owner">---</span>
+                        </div>
+                        <div class="data-item full-width">
+                            <label>Address</label>
+                            <span id="res-address">---</span>
+                        </div>
+                        <div class="data-item">
+                            <label>RERA Registration</label>
+                            <span id="res-rera">---</span>
+                        </div>
+                        <div class="data-item full-width">
+                            <label>Encumbrance Certificate</label>
+                            <span id="res-ec" class="status-safe">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taxation -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <h3>Tax & Liabilities</h3>
+                    </div>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <label>Local Body / Gram Panchayat</label>
+                            <span id="res-body">---</span>
+                        </div>
+                        <div class="data-item">
+                            <label>Annual Tax Status</label>
+                            <span id="res-tax-status">---</span>
+                        </div>
+                        <div class="data-item">
+                            <label>Last Paid Date</label>
+                            <span id="res-tax-date">---</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="workflow-section">
+        <h2>3D Reconstruction Workflow</h2>
+        <p class="section-desc">Transforming fragmented 2D land records into uniquely identifiable vertical property
+            units.</p>
+
+        <div class="workflow-container">
+            <div class="step-card">
+                <i class="fa-regular fa-folder-open"></i>
+                <h3>1. Data Collection</h3>
+                <ul>
+                    <li>Approved Floor Plans</li>
+                    <li>Government Property Records</li>
+                    <li>Surveyor Data (Measurements, Photos, LiDAR)</li>
+                </ul>
+            </div>
+            <div class="step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="step-card highlight">
+                <i class="fa-solid fa-cubes"></i>
+                <h3>2. 3D Reconstruction</h3>
+                <p>System processes multiple photos + measurements + floor plans to create accurate 3D models.</p>
+            </div>
+            <div class="step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="step-card success">
+                <i class="fa-solid fa-fingerprint"></i>
+                <h3>3. Unique Digital Identity</h3>
+                <p>Flat gets a unique digital property identity connected to its parent land parcel.</p>
+            </div>
+            <div class="step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="step-card success">
+                <i class="fa-solid fa-certificate"></i>
+                <h3>4. Grampanchayat Verified</h3>
+                <p>Final digital identity is officially verified and approved by the Grampanchayat.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verification" class="verification-section">
+        <div class="verification-content">
+            <h2>Conflict & Fraud Detection</h2>
+            <p>Our intelligent system detects anomalies and potential fakes in property records.</p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="feature-text">
+                        <h4>Overlap Detection</h4>
+                        <p>Automatically flags if property boundaries overlap incorrectly in 3D space.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-copy"></i></div>
+                    <div class="feature-text">
+                        <h4>Duplicate Records</h4>
+                        <p>Identifies if two records refer to the exact same physical property.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="feature-text">
+                        <h4>Dimension Verification</h4>
+                        <p>Cross-checks submitted 2D plans with actual 3D survey data to find discrepancies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="verification-visual">
+            <div class="scanner-demo">
+                <div class="blueprint-bg"></div>
+                <div class="scan-line"></div>
+                <div class="alert-box">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>Conflict Detected: Overlapping Boundary</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inside View Modal -->
+    <div id="inside-view-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-vr-cardboard"></i> Inside View: <span id="modal-flat-name">Flat</span></h2>
+                <p class="modal-desc">Verified interior survey images linked to ULPIN.</p>
+            </div>
+
+            <div class="gallery-container">
+                <div class="main-image">
+                    <img id="main-gallery-img" src="/Users/macbook/Desktop/Screenshot 2026-08-30 at 11.41.31 PM.png"
+                        alt="Living Room">
+                    <div class="image-label" id="main-gallery-label">Living Room</div>
+                </div>
+                <div class="thumbnail-grid">
+                    <img src="/Users/macbook/Desktop/Screenshot 2026-08-31 at 12.02.04 AM.png" class="thumb active"
+                        alt="Living Room">
+                    <img src="/Users/macbook/Desktop/Screenshot 2026-08-30 at 11.41.38 PM.png" class="thumb"
+                        alt="Kitchen">
+                    <img src="/Users/macbook/Desktop/Screenshot 2026-08-30 at 11.42.03 PM.png" class="thumb"
+                        alt="Master Bedroom">
+                    <img src="/Users/macbook/Desktop/Screenshot 2026-08-31 at 12.05.28 AM.png" class="thumb"
+                        alt="outview">
+                    <!-- Added the requested extra image -->
+                    <img src="/Users/macbook/Desktop/Screenshot 2026-08-30 at 11.41.31 PM.png" class="thumb"
+                        alt="Additional Room">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Department of Land and Property Governance. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
